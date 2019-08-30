@@ -19,10 +19,13 @@ export default async function users(root, { name }, { ctx }, info) {
 
   return Promise.all(users)
     .then((users) => {
-      return users.filter((user) => {
-        return user.name
-          .toLowerCase()
-          .includes(name.toLowerCase());
-      });
+      if (name) {
+        return users.filter((user) => {
+          return user.name
+            .toLowerCase()
+            .includes(name.toLowerCase());
+        });
+      }
+      return users;
     });
 }
