@@ -1,5 +1,6 @@
-import { getUser } from '../../../helpers';
+import { getUser, base62 } from '../../../helpers';
 
 export default async function user(root, { id }, { ctx }, info) {
-  return getUser(id);
+  const decodedID = base62.decode(id);
+  return getUser(decodedID);
 }
